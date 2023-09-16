@@ -7,8 +7,13 @@ def decentNumber(n):
 
     if m < 0:
         print(-1)
-    else:
-        print("5" * m, "3"*(n-m), sep="")
+        return
+
+    for i in range(m):
+        print(5, end="")
+    for i in range(n - m):
+        print(3, end="")
+    print()
 
 
 print(decentNumber(3))
