@@ -16,8 +16,6 @@ def toys(w):
     return count
 
 
-print(toys([]))
-
 assert toys([]) == 0
 assert toys([1]) == 1
 assert toys([1,2]) == 1

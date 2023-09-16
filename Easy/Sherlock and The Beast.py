@@ -1,4 +1,6 @@
 def decentNumber(n):
+    # O(1) time ?
+    # O(n) space, n - len of string
     m = n
     while m % 3 != 0:
         m -= 5
