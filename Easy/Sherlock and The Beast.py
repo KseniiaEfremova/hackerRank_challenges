@@ -1,6 +1,6 @@
 def decentNumber(n):
-    # O(1) time ?
-    # O(n) space, n - len of string
+    # O(1) time
+    # O(1) space
     m = n
     while m % 3 != 0:
         m -= 5
@@ -16,7 +16,6 @@ def decentNumber(n):
     print()
 
 
-print(decentNumber(3))
 # assert decentNumber(1) == "-1"
 # assert decentNumber(2) == "-1"
 # assert decentNumber(3) == "555"
