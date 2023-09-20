@@ -1,7 +1,6 @@
 def jimOrders(orders):
     # O(nlogn) time
     # O(n) space n - len(serve_time_and_customers)
-    # TODO ask len(orders) == len(serve_time_and_customers) in space of memory?
     serve_time_and_customers = []
     for i in range(len(orders)):
         serve_time = sum(orders[i])
