@@ -1,6 +1,6 @@
 def gameOfStones(n):
     # O(3**n) time
-    # O()
+    # O(n) space
     turn_to_move = 0
     winners = {}
     winner = try_all_options(n, turn_to_move, winners)
