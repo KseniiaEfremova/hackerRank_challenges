@@ -1,5 +1,5 @@
 def gameOfStones(n):
-    # O(3**n) time
+    # O(len(winners)) time
     # O(n) space
     turn_to_move = 0
     winners = {}

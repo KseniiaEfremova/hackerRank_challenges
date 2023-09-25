@@ -1,5 +1,5 @@
 def chessboardGame(x, y):
-    # O(4**n) time
+    # O(len(winners)) time
     # O(15*15) space
     turn_to_move = 0
     winners = {}
