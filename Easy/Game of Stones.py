@@ -1,32 +1,29 @@
 def gameOfStones(n):
-    # O(len(winners)) time
+    # O(n) time
     # O(n) space
-    turn_to_move = 0
     winners = {}
-    winner = try_all_options(n, turn_to_move, winners)
-    if winner == 0:
+    winner = is_first_win(n, winners)
+    if winner:
         return "First"
     return "Second"
 
 
-def try_all_options(n, turn_to_move, winners):
+def is_first_win(n, winners):
     if n in winners:
-        return winners[n] ^ turn_to_move
-    if n == 0 or n == 1:
-        winners[n] = 1
-        return turn_to_move ^ 1
-    if 1 < n < 7:
-        winners[n] = 0
-        return turn_to_move
+        return winners[n]
+    if n == 0:
+        winners[n] = False
+        return False
 
     moves = [n - 2, n - 3, n - 5]
     for move in moves:
-        winner = try_all_options(move, turn_to_move ^ 1, winners)
-        if winner == turn_to_move:
-            winners[move] = 1
-            return turn_to_move
-    winners[n] = 0
-    return turn_to_move ^ 1
+        if move >= 0:
+            is_win = not is_first_win(move, winners)
+            if is_win:
+                winners[n] = is_win
+                return is_win
+    winners[n] = False
+    return False
 
 
 assert gameOfStones(1) == "Second"
