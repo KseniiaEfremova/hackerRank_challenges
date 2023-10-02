@@ -1,4 +1,4 @@
-def gameOfStones(n):
+def gameOfStones2(n):
     # O(n) time
     # O(n) space
     winners = {}
@@ -26,6 +26,34 @@ def is_first_win(n, winners):
     return False
 
 
+def gameOfStones(n):
+    winners = {}
+    for m in range(n+1):
+        if m < 2:
+            winners[m] = False
+            continue
+        moves = [m - 2, m - 3, m - 5]
+        for move in moves:
+            if move in winners and (winners[move] is False):
+                winners[m] = True
+                break
+            if move < 0:
+                winners[m] = True
+                break
+
+            if move == 0:
+                winners[move] = False
+            elif move in winners:
+                winners[m] = not winners[move]
+            else:
+                winners[move] = False
+    if winners[n]:
+        return "First"
+    return "Second"
+
+
+print(gameOfStones(1))
+
 assert gameOfStones(1) == "Second"
 assert gameOfStones(7) == "Second"
 assert gameOfStones(8) == "Second"
@@ -38,3 +66,7 @@ assert gameOfStones(21) == "Second"
 assert gameOfStones(20) == "First"
 assert gameOfStones(14) == "Second"
 assert gameOfStones(12) == "First"
+
+
+
+

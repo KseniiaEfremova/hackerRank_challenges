@@ -1,15 +1,15 @@
 def chessboardGame(x, y):
     # O(len(winners)) time
-    # O(15*15) space
+    # O(len(winners)) space
     turn_to_move = 0
     winners = {}
-    winner = try_all_options(x,y,turn_to_move,winners)
+    winner = is_first_win(x,y,turn_to_move,winners)
     if winner == 0:
         return "First"
     return "Second"
 
 
-def try_all_options(x,y, turn_to_move, winners):
+def is_first_win(x,y, turn_to_move, winners):
     if (x,y) in winners:
         return winners[(x,y)] ^ turn_to_move
     moves = [(x - 2, y + 1),
@@ -18,9 +18,7 @@ def try_all_options(x,y, turn_to_move, winners):
              (x - 1, y - 2)]
     options_to_move = []
     for move in moves:
-        if move[0] < 1 or move[0] > 15 or move[1] < 1 or move[1] > 15:
-            pass
-        else:
+        if not (move[0] < 1 or move[0] > 15 or move[1] < 1 or move[1] > 15):
             options_to_move.append(move)
 
     if len(options_to_move) == 0:
@@ -29,7 +27,7 @@ def try_all_options(x,y, turn_to_move, winners):
 
     for i in range(len(options_to_move)):
         x, y = options_to_move[i]
-        winner = try_all_options(x,y,turn_to_move^1, winners)
+        winner = is_first_win(x,y,turn_to_move^1, winners)
         if winner == turn_to_move:
             winners[(x, y)] = 1
             return turn_to_move
