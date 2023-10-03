@@ -27,32 +27,23 @@ def is_first_win(n, winners):
 
 
 def gameOfStones(n):
-    winners = {}
-    for m in range(n+1):
-        if m < 2:
-            winners[m] = False
-            continue
-        moves = [m - 2, m - 3, m - 5]
+    # O(n) time
+    # O(n) space
+    res = []
+    for k in range(n+1):
+        moves = [k-2, k-3, k-5]
+        all_false = True
         for move in moves:
-            if move in winners and (winners[move] is False):
-                winners[m] = True
+            if move == 0 or (len(res) >= move > 0 and not res[move]):
+                res.append(True)
+                all_false = False
                 break
-            if move < 0:
-                winners[m] = True
-                break
-
-            if move == 0:
-                winners[move] = False
-            elif move in winners:
-                winners[m] = not winners[move]
-            else:
-                winners[move] = False
-    if winners[n]:
+        if all_false:
+            res.append(False)
+    if res[n]:
         return "First"
     return "Second"
 
-
-print(gameOfStones(1))
 
 assert gameOfStones(1) == "Second"
 assert gameOfStones(7) == "Second"
@@ -66,7 +57,6 @@ assert gameOfStones(21) == "Second"
 assert gameOfStones(20) == "First"
 assert gameOfStones(14) == "Second"
 assert gameOfStones(12) == "First"
-
 
 
 
