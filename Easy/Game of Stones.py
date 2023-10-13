@@ -34,7 +34,9 @@ def gameOfStones(n):
         moves = [k-2, k-3, k-5]
         all_false = True
         for move in moves:
-            if move == 0 or (len(res) >= move > 0 and not res[move]):
+            if move < 0:
+                continue
+            if move == 0 or not res[move]:
                 res.append(True)
                 all_false = False
                 break
@@ -44,6 +46,7 @@ def gameOfStones(n):
         return "First"
     return "Second"
 
+print(gameOfStones(5))
 
 assert gameOfStones(1) == "Second"
 assert gameOfStones(7) == "Second"
