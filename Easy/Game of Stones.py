@@ -29,19 +29,18 @@ def is_first_win(n, winners):
 def gameOfStones(n):
     # O(n) time
     # O(n) space
-    res = []
-    for k in range(n+1):
-        moves = [k-2, k-3, k-5]
-        all_false = True
-        for move in moves:
+    res = [False]
+    moves = [-2, -3, -5]
+    for k in range(1, n+1):
+        has_win_moves = False
+        for x in moves:
+            move = k + x
             if move < 0:
                 continue
-            if move == 0 or not res[move]:
-                res.append(True)
-                all_false = False
+            if not res[move]:
+                has_win_moves = True
                 break
-        if all_false:
-            res.append(False)
+        res.append(has_win_moves)
     if res[n]:
         return "First"
     return "Second"
