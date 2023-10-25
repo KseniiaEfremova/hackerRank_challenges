@@ -1,15 +1,23 @@
 def anagram(s):
+    # n - len(s)
     # O(n) time
     # O(n) space
     if len(s) % 2 == 1:
         return -1
-    n = len(s)//2
-    first_word = list(s[:n])
-    second_word = list(s[n:])
+    n = len(s) // 2
+    first_word = dict()
+    second_word = dict()
+    res = 0
+    for letter in s[:n]:
+        first_word[letter] = first_word.get(letter, 0) + 1
+    for letter in s[n:]:
+        second_word[letter] = second_word.get(letter, 0) + 1
     for letter in first_word:
-        if letter in second_word:
-            second_word.remove(letter)
-    return len(second_word)
+        if letter in second_word and first_word[letter] > second_word[letter]:
+            res += first_word[letter] - second_word[letter]
+        elif letter not in second_word:
+            res += first_word[letter]
+    return res
 
 
 assert anagram("ab") == 1

@@ -1,26 +1,5 @@
-def gameOfStones2(n):
-    # O(n) time
-    # O(n) space
-    res = [False]
-    moves = [-2, -3, -5]
-    for k in range(1, n+1):
-        has_win_moves = False
-        for x in moves:
-            move = k + x
-            if move < 0:
-                continue
-            if not res[move]:
-                has_win_moves = True
-                break
-        res.append(has_win_moves)
-        print(res)
-    if res[n]:
-        return "First"
-    return "Second"
-
-
-
-
+# True - first wins
+# False - second wins
 def gameOfStones(n):
     # O(n) time
     # O(1) space
@@ -43,6 +22,12 @@ def gameOfStones(n):
     return "Second"
 
 
+def gameOfStones2(n):
+    if n % 7 < 2:
+        return "Second"
+    return "First"
+
+
 print(gameOfStones(9))
 
 assert gameOfStones(1) == "Second"
@@ -57,6 +42,3 @@ assert gameOfStones(21) == "Second"
 assert gameOfStones(20) == "First"
 assert gameOfStones(14) == "Second"
 assert gameOfStones(12) == "First"
-
-
-
