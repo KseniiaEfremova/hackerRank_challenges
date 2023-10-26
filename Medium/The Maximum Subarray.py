@@ -1,6 +1,3 @@
-import sys
-
-
 def maxSubsequences(arr):
     # n - len(arr)
     # O(n) time
@@ -21,15 +18,15 @@ def maxSubarray(arr):
     len_subarray = 1
     max_subarray = sum(arr)
     while len_subarray <= len(arr):
+        temp_subarray = sum(arr[: len_subarray-1])
         for i in range(len(arr) - len_subarray + 1):
-            temp_subarray = arr[i: i + len_subarray]
-            max_subarray = max(max_subarray, sum(temp_subarray))
+            temp_subarray += arr[i+len_subarray-1]
+            max_subarray = max(max_subarray, temp_subarray)
+            temp_subarray -= arr[i]
         len_subarray += 1
 
     return [max_subarray, maxSubsequences(arr)]
 
-
-print(maxSubarray([-2, -3, -1, -4, -6]))
 
 assert maxSubarray([-1,2,3,-4,5,10]) == [16,20]
 assert maxSubarray([1,2,3,4]) == [10, 10]
