@@ -1,6 +1,6 @@
 def getMinimumCost(k, c):
     # O(nlogn) time
-    # O(nlogn) space
+    # O(1) space
     if len(c) <= k:  # if number of friends more than number of flowers
         return sum(c)
     c.sort(reverse=True)
